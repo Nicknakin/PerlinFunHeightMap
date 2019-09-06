@@ -2,18 +2,20 @@ let noiseScale;
 let grid;
 let balls;
 
+const gridSize = 16;
+
 let img;
 
 function setup(){
     //1440x2560
-    createCanvas(1440, 2560);
+    createCanvas(windowWidth, windowHeight);
     const diag = mag(width, height)/2;
     noiseDetail(8);
     noiseScale = 0.01;
     let theta = radians(0);
     grid = new Array(height).fill().map((_, y) => new Array(width).fill().map((_, x) => {
         theta = 45; //map(cos(map(x/width, 0, 1, 0, TWO_PI)), -1, 1, 0, PI/4); //mag(x-(width/2), y-(height/2))/mag(width/2, height/2)*PI/8;
-        return map(cos((x*cos(theta)-y*sin(theta))/height*TWO_PI*32)*sin((x*sin(theta)+y*cos(theta))/height*TWO_PI*32), -1, 1, 0, 255)
+        return map(cos((x*cos(theta)-y*sin(theta))/height*TWO_PI*gridSize)*sin((x*sin(theta)+y*cos(theta))/height*TWO_PI*gridSize), -1, 1, 0, 255)
     }));
     grid2 = new Array(height).fill().map((_, y) => new Array(width).fill().map((_, x) => {
         const Az = (x+1 < width)? grid[y][x+1]: grid[y][x];
