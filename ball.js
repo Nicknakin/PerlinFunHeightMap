@@ -5,7 +5,10 @@ class Ball{
         this.a = createVector(0,0);
         this.v = createVector(0,0);
         this.antiBall = random(1) > 0.5;
-        this.c.g = 128;
+        const rand = random(.5, 1);
+        this.c.g = sqrt(128*128*rand);
+        this.c.r = sqrt(this.c.r*this.c.r*rand);
+        this.c.b = sqrt(this.c.b*this.c.b*rand);
         if(this.antiBall)
             this.c.b = 0;
         else
@@ -15,7 +18,7 @@ class Ball{
     draw(){
         fill(this.c.r, this.c.g, this.c.b);
         stroke(this.c.r, this.c.g, this.c.b);
-        strokeWeight(4);
+        strokeWeight(1);
         point(this.pos.x, this.pos.y);
         //line(this.pos.x, this.pos.y, this.v.x+this.pos.x, this.v.y+this.pos.y);
         strokeWeight(1);
